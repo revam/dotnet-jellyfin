@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using Emby.Naming.Audio;
 using Emby.Naming.Common;
+using Jellyfin.Data.Enums;
 using MediaBrowser.Controller;
 using MediaBrowser.Controller.Entities;
 using MediaBrowser.Controller.Resolvers;
@@ -29,7 +30,7 @@ namespace Emby.Server.Implementations.Library
         }
 
         /// <inheritdoc />
-        public bool ShouldIgnore(FileSystemMetadata fileInfo, BaseItem parent)
+        public bool ShouldIgnore(FileSystemMetadata fileInfo, CollectionType? collectionType, BaseItem parent)
         {
             // Don't ignore application folders
             if (fileInfo.FullName.Contains(_serverApplicationPaths.RootFolderPath, StringComparison.InvariantCulture))

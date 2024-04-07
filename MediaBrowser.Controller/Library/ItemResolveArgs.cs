@@ -245,7 +245,7 @@ namespace MediaBrowser.Controller.Library
             for (var i = 0; i < numberOfChildren; i++)
             {
                 var child = FileSystemChildren[i];
-                if (_libraryManager.IgnoreFile(child, Parent))
+                if (_libraryManager.IgnoreFile(child, CollectionType, Parent))
                 {
                     continue;
                 }

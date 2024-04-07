@@ -549,9 +549,10 @@ namespace MediaBrowser.Controller.Library
         /// Ignores the file.
         /// </summary>
         /// <param name="file">The file.</param>
+        /// <param name="collectionType">The collection type of the library we're filtering the file information in.</param>
         /// <param name="parent">The parent.</param>
         /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
-        bool IgnoreFile(FileSystemMetadata file, BaseItem parent);
+        bool IgnoreFile(FileSystemMetadata file, CollectionType? collectionType, BaseItem parent);
 
         Guid GetStudioId(string name);
 

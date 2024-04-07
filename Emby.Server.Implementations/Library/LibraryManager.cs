@@ -545,7 +545,7 @@ namespace Emby.Server.Implementations.Library
             };
 
             // Return null if ignore rules deem that we should do so
-            if (IgnoreFile(args.FileInfo, args.Parent))
+            if (IgnoreFile(args.FileInfo, collectionType, args.Parent))
             {
                 return null;
             }
@@ -598,8 +598,8 @@ namespace Emby.Server.Implementations.Library
             return ResolveItem(args, resolvers);
         }
 
-        public bool IgnoreFile(FileSystemMetadata file, BaseItem parent)
-            => EntityResolutionIgnoreRules.Any(r => r.ShouldIgnore(file, parent));
+        public bool IgnoreFile(FileSystemMetadata file, CollectionType? collectionType, BaseItem parent)
+            => EntityResolutionIgnoreRules.Any(r => r.ShouldIgnore(file, collectionType, parent));
 
         public List<FileSystemMetadata> NormalizeRootPathList(IEnumerable<FileSystemMetadata> paths)
         {
@@ -647,7 +647,7 @@ namespace Emby.Server.Implementations.Library
             CollectionType? collectionType,
             IItemResolver[] resolvers)
         {
-            var fileList = files.Where(i => !IgnoreFile(i, parent)).ToList();
+            var fileList = files.Where(i => !IgnoreFile(i, collectionType, parent)).ToList();
 
             if (parent is not null)
             {
